@@ -1,19 +1,16 @@
 const int speakerPin = A0;
-const int buzzerPin = 11;
+const int buzzerPin = 12;
 const int pushButton = 2;
 int speakerValue = 0;
 const int threshold = 1;
 
 unsigned long previousTime =  0;
 unsigned long currentTime = 0;
-int interval = 10;
-unsigned long previousTimeSound = 0;
-unsigned long currentTimeSound = 0;
-int intervalSound = 5000;
+int interval = 5;
 int intervalDebounce = 50;
 unsigned long lastDebounceTime;
 
-int buzzerTone = 1000;
+int buzzerTone = 456;
 int soundState = 0;
 int lastButtonState = 1;
 int reading;
@@ -24,17 +21,16 @@ int buttonState = 1;
 void setup() {
   pinMode(speakerPin, INPUT);
   pinMode(pushButton, INPUT_PULLUP);
+  pinMode(buzzerPin,OUTPUT);
   Serial.begin(9600);
 }
 void loop() {
-  currentTime = millis();
-  if (currentTime - previousTime >= interval)
-  {
     speakerValue = analogRead(speakerPin);
     if (speakerValue != 0)
       Serial.println(speakerValue);
       
-    if (speakerValue > threshold) {
+      
+    if (speakerValue >= threshold) {
        tone(buzzerPin, buzzerTone, 500);
       Serial.println("Knock");
     }
@@ -54,6 +50,6 @@ void loop() {
         soundState = 0;
       }
       lastButtonState = reading;
-    }
+  
     previousTime = currentTime;
   }
