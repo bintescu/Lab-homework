@@ -2,7 +2,7 @@ const int speakerPin = A0;
 const int buzzerPin = 11;
 const int pushButton = 2;
 int speakerValue = 0;
-const int threshold = 20;
+const int threshold = 1;
 
 unsigned long previousTime =  0;
 unsigned long currentTime = 0;
@@ -35,14 +35,10 @@ void loop() {
       Serial.println(speakerValue);
       
     if (speakerValue > threshold) {
-      if (soundState == 0) previousTimeSound = millis();
-      soundState = 1;
+       tone(buzzerPin, buzzerTone, 500);
       Serial.println("Knock");
     }
 
-    if (soundState == 1) currentTimeSound = millis(); 
-    if (currentTimeSound - previousTimeSound >= intervalSound) {
-      tone(buzzerPin, buzzerTone, 500);
 
       reading = digitalRead(pushButton);
       Serial.println(reading);
@@ -61,4 +57,3 @@ void loop() {
     }
     previousTime = currentTime;
   }
-}
