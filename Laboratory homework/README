@@ -1,3 +1,3 @@
 In tema1 este codul pentru circuitul cu led RGB , controlat cu 3 potentiometre.
 
-In tema 2 este codul pentru circuitul cu buzzerul pe post de senzor , dupa ce este detectat zgomotul led-ul conectat la pinul 13 este aprins.
+In tema 2 este codul pentru circuitul cu buzzerul pe post de senzor care activeaza buzzerul alarma si apoi este oprit de buton.
