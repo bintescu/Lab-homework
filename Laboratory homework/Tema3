@@ -192,5 +192,6 @@ void loop() {
       MovesOfJoystick= true;
     }
   }
+  
   displayAllNumbers();
 }
